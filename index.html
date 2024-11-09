@@ -1303,7 +1303,7 @@
     <!-- form submission -->
     <script>
       async function send(name, email, subject, message) {
-        var response = await fetch("", {
+        var response = await fetch("https://yourmixjnr-server-v1.vercel.app/api/v1/submit", {
           method: "POST",
           body: JSON.stringify({
             name: name,
