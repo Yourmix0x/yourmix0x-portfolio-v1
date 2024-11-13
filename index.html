@@ -457,7 +457,7 @@
             <a
               class="resume"
               target="_blank"
-              href="./assets/resume/michael_victor_latest.pdf"
+              href="./assets/resume/michael_victor_latest_1.pdf"
               >Download My Resume</a
             >
           </div>
@@ -1303,18 +1303,21 @@
     <!-- form submission -->
     <script>
       async function send(name, email, subject, message) {
-        var response = await fetch("https://yourmixjnr-server-v1.vercel.app/api/v1/submit", {
-          method: "POST",
-          body: JSON.stringify({
-            name: name,
-            email: email,
-            subject: subject,
-            message: message,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        var response = await fetch(
+          "https://yourmixjnr-server-v1.vercel.app/api/v1/submit",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              subject: subject,
+              message: message,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         //getting the response data
         var data = await response.json();
         if (response.status == 200) {
