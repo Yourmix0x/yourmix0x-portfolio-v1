@@ -9,4 +9,4 @@ you know where the magic happens? right here. let's build something awesome toge
 - i am probably giving _JavaScript_ and _React_ more attention than anything else these days
 - i am open to talking about anything and everything
 
-[my résumé resides here](https://yourmixjnr.vercel.app/assets/resume/michael_victor_latest.pdf)
+[my résumé resides here](https://yourmixjnr.vercel.app/assets/resume/michael_victor_latest_2.pdf)
