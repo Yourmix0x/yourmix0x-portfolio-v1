@@ -1,6 +1,97 @@
 document.addEventListener("DOMContentLoaded", async function () {
-  // Initialize tsParticles
-  await tsParticles.load("tsparticles", {
+  // Detect seasonal mode: Dec 1 - Jan 5 or ?seasonal=true
+  const isSeasonalWindow = () => {
+    const now = new Date();
+    const month = now.getMonth();
+    const date = now.getDate();
+    if (month === 11 && date >= 1) return true;
+    if (month === 0 && date <= 5) return true;
+    return false;
+  };
+
+  const seasonalParam = new URLSearchParams(window.location.search).get(
+    "seasonal"
+  );
+  const isHoliday =
+    (seasonalParam && seasonalParam.toLowerCase() === "true") ||
+    isSeasonalWindow();
+
+  const snowOptions = {
+    fullScreen: {
+      enable: true,
+    },
+    fpsLimit: 60,
+    particles: {
+      number: {
+        value: 50,
+        density: {
+          enable: true,
+          value_area: 800,
+        },
+      },
+      color: {
+        value: "#ffffff",
+      },
+      shape: {
+        type: "circle",
+        stroke: {
+          width: 0,
+          color: "#9ca3af",
+        },
+      },
+      opacity: {
+        value: 0.5,
+        random: true,
+      },
+      size: {
+        value: 5,
+        random: true,
+      },
+      line_linked: {
+        enable: false,
+      },
+      move: {
+        enable: true,
+        speed: 3.5,
+        direction: "bottom",
+        straight: false,
+        out_mode: "out",
+      },
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: {
+          enable: true,
+          mode: "bubble",
+        },
+        onclick: {
+          enable: true,
+          mode: "repulse",
+        },
+        resize: true,
+      },
+      modes: {
+        bubble: {
+          distance: 400,
+          size: 4,
+          duration: 0.3,
+          opacity: 1,
+          speed: 3,
+        },
+        repulse: {
+          distance: 200,
+          duration: 0.4,
+        },
+        push: {
+          particles_nb: 4,
+        },
+      },
+    },
+    retina_detect: true,
+  };
+
+  const defaultOptions = {
     fullScreen: {
       enable: true,
     },
@@ -113,5 +204,10 @@ document.addEventListener("DOMContentLoaded", async function () {
       },
     },
     retina_detect: true,
-  });
+  };
+
+  // Initialize tsParticles
+  const options = isHoliday ? snowOptions : defaultOptions;
+
+  await tsParticles.load("tsparticles", options);
 });
